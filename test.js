@@ -11,6 +11,11 @@ var configumon = require('./index');
  */
 
 describe('var locals = configumon()', function() {
+  it('should assert input types', function() {
+    configumon.bind(configumon, 123)
+      .should.throw('configumon: config should be an object');
+  })
+
   it('should return accessors', function() {
     var x = configumon({
 
@@ -18,10 +23,6 @@ describe('var locals = configumon()', function() {
 
       get hello() {
         return this.baseUrl + ' baz'
-      },
-
-      get bar() {
-        return 'foo'
       }
     })();
 
@@ -30,5 +31,14 @@ describe('var locals = configumon()', function() {
 });
 
 describe('locals()', function() {
-  it('should assert input types')
+  var locals = configumon({foo: 'bar', bin: 'baz'});
+
+  it('should assert input types', function() {
+    locals.bind(locals, 123)
+      .should.throw('configumon: overrides should be an object')
+  });
+
+  it('should override defaults', function() {
+    locals({foo: 'bin'}).foo.should.eql('bin');
+  })
 })
