@@ -7,7 +7,13 @@
     "test": "make test"
   },
   "repository": "yoshuawuyts/configumon",
-  "keywords": [],
+  "keywords": [
+    "configuration",
+    "object",
+    "overrides",
+    "env",
+    "environment"
+  ],
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {

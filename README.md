@@ -6,6 +6,7 @@
 
 Composable configuration files with optional environment-specific overrides,
 not a Digimon.
+
 ## Installation
 ```bash
 npm install configumon
@@ -13,7 +14,7 @@ npm install configumon
 
 ## Usage
 ```js
-var locals = require('configumon');
+var configumon = require('configumon');
 
 var config = {
   urlBase: 'http://mysite.com',
@@ -31,8 +32,27 @@ module.exports = configumon(config)(overrides);
 ```
 
 ## API
+#### var locals = configumon(baseConfig)
+Pass in a base configuration object.
 ```js
+var configumon = require('configumon');
 
+var locals = configumon({
+  homeUrl: 'http://mysite.com',
+  get contactUrl() {
+    this.homeUrl + '/contact'
+  }
+});
+```
+
+#### locals(overrides)
+Pass in an overrides object which does a shallow replace on the base
+configuration. It's particularly useful to make urls point to `localhost`
+in development only.
+```js
+module.exports = locals({
+  homeUrl: 'localhost:' + process.env.PORT
+})
 ```
 
 ## License
