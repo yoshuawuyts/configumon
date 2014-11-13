@@ -4,8 +4,8 @@
 [![Test coverage][coveralls-image]][coveralls-url]
 [![Downloads][downloads-image]][downloads-url]
 
-Composable configuration files with optional environment-specific overrides,
-not a Digimon.
+Create composable configuration files, and override values based on
+`process.env.NODE_ENV`.
 
 ## Installation
 ```bash
